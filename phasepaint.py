@@ -144,10 +144,10 @@ if __name__ == '__main__':
     n_best_scores = args.n_best_scores
     ignore_n = args.ignore_first_n_columns
     
-    anc = np.loadtxt(args.input_file, skiprows=1, dtype="str")
+    anc = np.loadtxt(args.input_file, skiprows=1, dtype='U10')
     
-with gzip.open(args.input_file, "rt") if args.input_file.endswith(".gz") else open(args.input_file, "rt") as ancfile:
-    header = ancfile.readline()
+    with gzip.open(args.input_file, "rt") if args.input_file.endswith(".gz") else open(args.input_file, "rt") as ancfile:
+        header = ancfile.readline()
     
     ignore_columns = anc[:,:ignore_n]
     anc = np.delete(anc, tuple(range(ignore_n)), axis=1)
